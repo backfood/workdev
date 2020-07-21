@@ -230,30 +230,35 @@ function merges(merges_arr) {//['A1:C4',B5:D6]
   let dec_code_arr = []
   for (let i = 0; i != merges_arr.length; i++) {
     dec_code_arr[i] = {
-      's':XLSX.utils.decode_cell( merges_arr[i].split(":")[0]),
-      'e': XLSX.utils.decode_cell( merges_arr[i].split(":")[1])
+      's': XLSX.utils.decode_cell(merges_arr[i].split(":")[0]),
+      'e': XLSX.utils.decode_cell(merges_arr[i].split(":")[1])
     }
   }
- return dec_code_arr
+  return dec_code_arr
 }
 merges(['A1:C4', 'B5:D6'])
 
-export function export_json_to_excel(th, jsonData, defaultTitle, merges_arg=[]) {
-
+export function export_json_to_excel(
+  tHeader,
+  datalist,
+  defaultTitle,
+  merges_arg = []
+) {
+  console.log(datalist)
   /* original data */
+  let { data, sortCol } = datalist
+  data = data.map(v => sortCol.map(j => v[j]));
+  data.unshift(...tHeader);
 
-  var data = jsonData;
-  // console.log(...th)
-  data.unshift(...th);
-  // console.log(data)
   var ws_name = "SheetJS";
 
   var wb = new Workbook(),
     ws = sheet_from_array_of_arrays(data);//记录每个单元格数据的对象
-    if(merges_arg.length){
-      ws['!merges']=merges(merges_arg)
-      // console.log(ws['!merges'])
-    }
+  // console.log(ws)
+  if (merges_arg.length) {
+    ws['!merges'] = merges(merges_arg)
+    // console.log(ws['!merges'])
+  }
   // ws['!merges'] = [{
   //   s: { //s start 开始
   //     c: 1,//cols 开始列
@@ -274,8 +279,8 @@ export function export_json_to_excel(th, jsonData, defaultTitle, merges_arg=[]) 
     type: 'binary'
   });
   var title = defaultTitle || '列表'
-  saveAs(new Blob([s2ab(wbout)], {
-    type: "application/octet-stream"
-  }), title + ".xlsx")
-  console.log("这里的代码执行了")
+  // saveAs(new Blob([s2ab(wbout)], {
+  //   type: "application/octet-stream"
+  // }), title + ".xlsx")
+  // console.log("这里的代码执行了")
 };

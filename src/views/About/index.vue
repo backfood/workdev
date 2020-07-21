@@ -25,8 +25,6 @@
   </div>
 </template>
 <script>
-import Blob from "./Blob";
-import Export2Excel from "./Export2Excel.js";
 // import mutileheader from "./mutileheader";
 export default {
   name: "exportexcel",
@@ -88,24 +86,69 @@ export default {
           date: "2016-05-07",
           name: "王小虎",
           province: "上海",
-          city: "普陀区",
+
           address: "上海市普陀区金沙江路 1518 弄",
+          city: "普陀区",
           zip: 200333
         }
       ]
     };
   },
-  mounted() {},
+  // mounted() {
+  //   let tableData = this.tableData;
+  //   let res = tableData.map(e => Object.values(e));
+  // console.log(res)
+  // },
   created() {},
+  mounted() {
+    // let tHeader = [
+    //   ["日期", "配送信息"],
+    //   [null, "姓名", "地址"],
+    //   [null, null, "省份", "市区", "地址", "邮编"]
+    // ]; // 上面设置Excel的表格第一行的标题
+    let filterVal = ["date", "name", "province", "city", "address", "zip"]; // 上面的index、nickName、name是tableData里对象的属性key值
+    let list = this.tableData; //把要导出的数据tableData存到list
+    // const data = this.formatJson(filterVal, list);
+    const merges = ["A1:A3", "B1:F1", "B2:B3", "C2:F2"];
+    let name = "列表excel";
+    let params = {
+      tHeader: [
+        ["日期", "配送信息"],
+        [null, "姓名", "地址"],
+        [null, null, "省份", "市区", "地址", "邮编"]
+      ],
+      dataList: {
+        data: this.tableData,
+        sortCol: filterVal
+      },
+      name,
+      merges
+    };
+  },
   methods: {
     exportExcel() {
       const { export_json_to_excel } = require("./Export2Excel.js");
-      const tHeader = [["日期", "配送信息"],["","姓名","地址"],["","","省份","市区","地址","邮编"]]; // 上面设置Excel的表格第一行的标题
-      const filterVal = ["date", "address", "name",'province','city','zip']; // 上面的index、nickName、name是tableData里对象的属性key值
-      const list = this.tableData; //把要导出的数据tableData存到list
-      const data = this.formatJson(filterVal, list);
-      const merges = ["A1:A3", "B1:F1","B2:B3","C2:F2"];
-      export_json_to_excel(tHeader, data, "列表excel", merges); //最后一个是表名字
+      let tHeader = [
+        ["日期", "配送信息"],
+        [null, "姓名", "地址"],
+        [null, null, "省份", "市区", "地址", "邮编"]
+      ]; // 上面设置Excel的表格第一行的标题
+      let filterVal = ["date", "name", "province", "city", "address", "zip"]; // 上面的index、nickName、name是tableData里对象的属性key值
+      let list = this.tableData; //把要导出的数据tableData存到list
+      // const data = this.formatJson(filterVal, list);
+      const merges = ["A1:A3", "B1:F1", "B2:B3", "C2:F2"];
+      let name = "列表excel";
+      let dataList= {
+          'data': this.tableData,
+          'sortCol': filterVal
+        }
+      const params = {
+       tHeader,
+        
+        name,
+        merges
+      };
+      export_json_to_excel(tHeader,dataList,name,merges); //表头 数据 表名 合并规则
     },
     formatJson(filterVal, jsonData) {
       /**
@@ -121,7 +164,7 @@ export default {
        * 数组map后返回数组
        * return 数字的行数组 //["2016-05-02", "上海市普陀区金沙江路 1518 弄", "王小虎"]
        */
-      // console.log(jsonData.map(v => filterVal.map(j => v[j])));
+      console.log(jsonData.map(v => filterVal.map(j => v[j])));
       return jsonData.map(v => filterVal.map(j => v[j]));
     }
   }

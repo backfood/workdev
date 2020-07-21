@@ -38,7 +38,7 @@
 <script>
 var treeData = {
   name:
-    "用户ID:10339 账号:123456789@qq.com 推荐人账号:+8615999569636 工会人数:0 矿机租赁资产:-- 工会矿机租赁业绩:-- 等级:V0",
+    "",
   children: []
 };
 
@@ -56,7 +56,7 @@ export default {
     addChildren(item) {
       item.children.push({
         name:
-          "用户ID:10339 账号:123456789@qq.com 推荐人账号:+8615999569636 工会人数:0 矿机租赁资产:-- 工会矿机租赁业绩:-- 等级:V0",
+          "",
         children: []
       });
     }

@@ -2,12 +2,6 @@
   <div class="item">
     <div class="li-body">
       <span class="line-align"></span>
-
-      <!-- <div :class="{bold: hasChildren}" @click="toggle" @dblclick="makeFolder"> -->
-      <!-- <div
-          :class="{bold: hasChildren}"
-          @click="toggle"
-      @dblclick="makeFolder">-->
       <div :class="{bold: hasChildren,}">
         <span v-if="hasChildren">
           <span @click="toggle" v-if="isOpen">-</span>
