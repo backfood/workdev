@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <!-- <div>
       <svg width="800px" height="800px" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <path d="M0 300 C 100 300, 100 0, 200 0" stroke="black" fill="transparent" />
         <path d="M0 300 C 100 300, 100 0, 200 0" stroke="black" fill="transparent" />
@@ -18,16 +18,30 @@
         />
       </svg>
     </div>
-    <div>svg</div>
+    <div>svg</div>-->
+    <div>
+      <div>{{$t('common.home')}}</div>wenjain
+    </div>
+    <div @click="toggle">多语言</div>
   </div>
 </template>
 
 <script>
 export default {
   name: "sGdemo",
-  data(){
+  data() {
     return {
-      tree:[]
+      isChinese: false
+    };
+  },
+  methods: {
+    toggle() {
+      this.isChinese = !this.isChinese;
+      if (this.isChinese) {
+        this.$i18n.locale = "en";
+      } else {
+        this.$i18n.locale = "zh";
+      }
     }
   }
 };

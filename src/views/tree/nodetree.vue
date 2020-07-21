@@ -9,8 +9,8 @@
             <span @click="addchildren(item)" v-else>+</span>
           </span>
           <span>
-            <slot :item="item">{{ item.name }}</slot>
-            <!-- <nodeContent node="123"></nodeContent> -->
+            <!-- <slot :item="item"></slot> -->
+            <nodeContent :node="123"></nodeContent>
             <button @click="addchildren(item)" style="border:node;">新增</button>
           </span>
         </div>
@@ -26,6 +26,7 @@
         </div>
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -35,29 +36,30 @@ export default {
   props: {
     item: Object
   },
-  components:{
-    nodeContent:{
-      props:{
-        node:{
-          default:{
-            ttype:String
+  components: {
+    nodeContent: {
+      props: {
+        node: {
+          default: {
+            ttype: String
           }
         }
       },
-      render(){
-        let scopedSlots = this.$scopedSlots
+      render() {
+        let scopedSlots = this.$scopedSlots;
         // console.log(scopedSlots)
-        let parent = parent = this.$parent;
-        let node =this.node
-        console.log(parent)
-        console.log(this.node)
-        return <span>{this.$scopedSlots.default(node)}</span>
+        let parent = (parent = this.$parent);
+        let node = this.node;
+        console.log(parent.$scopedSlots);
+        console.log(this.node);
+        return <span>{parent.$scopedSlots.default}</span>;
       }
     }
   },
   data() {
     return {
-      isOpen: false
+      isOpen: false,
+      tree: null
     };
   },
   computed: {
@@ -65,8 +67,9 @@ export default {
       return this.item.children && this.item.children.length;
     }
   },
+  created() {},
   mounted() {
-      // console.log(this)
+    // console.log(this)
   },
   methods: {
     toggle() {

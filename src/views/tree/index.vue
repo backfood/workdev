@@ -2,7 +2,7 @@
   <div>
     <nodetree :item="treeData" @addChildren="addChildren">
       <template v-slot:default="{item}">{{ item.name }}</template>
-    </nodetree>
+    </nodetree> 
     <el-tree ref="tree" :data="data" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
   </div>
 </template>
