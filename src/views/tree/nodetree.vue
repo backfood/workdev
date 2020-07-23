@@ -52,6 +52,9 @@ export default {
         let node = this.node;
         // console.log(parent.$scopedSlots);
         // console.log(this.node);
+        // console.log(this.node);
+        // console.log(this.node);
+        // console.log(this.node);
         return <span>{parent.$scopedSlots.default}</span>;
       }
     }
