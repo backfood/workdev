@@ -84,6 +84,11 @@ export default {
       }
     };
   },
+  created(){
+    console.log(this.$route.query)
+    let query=window.location.search.substr(1).split("=")
+    console.log(query[1])
+  },
   mounted() {
     // console.log(this.$refs.tree);
   },

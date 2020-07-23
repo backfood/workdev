@@ -52,6 +52,11 @@ export default {
   data() {
     return { treeData: treeData };
   },
+  created(){
+    console.log(this.$route.query)
+    let query=window.location.search.substr(1).split("=")
+    console.log(query[1])
+  },
   methods: {
     addChildren(item) {
       item.children.push({

@@ -99,7 +99,11 @@ export default {
   //   let res = tableData.map(e => Object.values(e));
   // console.log(res)
   // },
-  created() {},
+  created(){
+    console.log(this.$route.query)
+    let query=window.location.search.substr(1).split("=")
+    console.log(query[1])
+  },
   mounted() {
     // let tHeader = [
     //   ["日期", "配送信息"],
