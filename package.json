@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "dev": "vue-cli-service serve"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -19,8 +20,10 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-router": "~4.4.0",
+    "@vue/cli-plugin-unit-jest": "^4.4.6",
     "@vue/cli-plugin-vuex": "~4.4.0",
     "@vue/cli-service": "~4.4.0",
+    "@vue/test-utils": "^1.0.3",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "script-loader": "^0.7.2",
