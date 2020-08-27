@@ -244,7 +244,7 @@ export function export_json_to_excel(
   defaultTitle,
   merges_arg = []
 ) {
-  console.log(datalist)
+  // console.log(datalist)
   /* original data */
   let { data, sortCol } = datalist
   data = data.map(v => sortCol.map(j => v[j]));
@@ -279,8 +279,9 @@ export function export_json_to_excel(
     type: 'binary'
   });
   var title = defaultTitle || '列表'
-  // saveAs(new Blob([s2ab(wbout)], {
-  //   type: "application/octet-stream"
-  // }), title + ".xlsx")
+  // console.log(s2ab(wbout),"返回的buf")
+  saveAs(new Blob([s2ab(wbout)], {
+    type: "application/octet-stream"
+  }), title + ".xlsx")
   // console.log("这里的代码执行了")
 };
