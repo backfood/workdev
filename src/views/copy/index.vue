@@ -20,6 +20,7 @@ export default {
       let copyDIV = document.getElementById("text");
       console.log(div.style);
       //使用innerhtml只可以触发一次
+      //innerHTML是重新加载html，动态绑定的事件或关联样式都消失了
       // document.body.innerHTML += `<div id="text" style="opacity: 0;">
       // 	这是一段文本
       // </div>`
